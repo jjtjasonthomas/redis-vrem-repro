@@ -48,9 +48,6 @@ All line numbers are Redis 8.4.0, `modules/vector-sets/hnsw.c`.
    bytes are zero: `num_links (0) >= max_links (0)` makes the node look
    "full", the aggressive path skips the `worst_distance` guard, and
    `links[worst_idx]` dereferences `NULL[0]` -> SIGSEGV at `hnsw.c:1140`.
-   If the bytes are non-zero garbage, the same read faults one frame up in
-   `hnsw_reconnect_nodes` on a bad pointer. Same defect, two faces (see
-   "Crash frames" below).
 
 The on-disk format is not involved: `hnsw_deserialize_index()` rejects any
 link to a node whose level is below the layer (`hnsw.c:2530`) and enforces
@@ -76,7 +73,7 @@ flood; it only takes longer in wall-clock time.
 - Docker (on macOS: `colima start` first)
 - Python 3.8+
 
-## Run (unmodified official redis:8.4.0)
+## Run
 
 ```sh
 ./run.sh
@@ -103,48 +100,16 @@ probability coincidence per key) -- usually 1-10 minutes. If a run drains
 past ~5000 keys without crashing, restart it; a fresh graph shape usually
 triggers sooner.
 
-## Deterministic variant: AddressSanitizer build
-
-On the stock binary the innermost crash frame depends on the out-of-bounds
-bytes (see below). An ASAN build reports the out-of-bounds *read* itself, at
-its first occurrence, regardless of memory contents. `Dockerfile.asan`
-builds Redis from source with `SANITIZER=address MALLOC=libc`.
-
-```sh
-# populate ./src with the redis 8.4.0 source tree, e.g. from a checkout:
-#   git -C /path/to/redis archive 8.4.0 | (mkdir -p src && tar -x -C src)
-./run.sh asan
-```
-
-Expected: `heap-buffer-overflow READ` in `search_layer` /
-`select_neighbors`, with the allocation stack showing the entry-point node
-from `hnsw_node_new` -- i.e. reading `node->layers[layer]` for a layer the
-node does not have. Captured reports for 8.4.0 and for `unstable`
-(`aa5409f1c`, still affected) are in `asan-report-8.4.0.txt` and
-`asan-report-unstable.txt`.
-
-## Crash frames (same bug, two faces)
-
-The out-of-bounds read of the missing upper-layer struct surfaces
-differently depending on what bytes follow the node in the heap:
-
-- **zeroed bytes** -> the search survives (reads "0 links, NULL array"),
-  returns the node, and `select_neighbors` dereferences the NULL ->
-  `select_neighbors` + `Accessing address: (nil)` (the production frame).
-- **non-zero garbage** -> the search itself faults on a bad pointer ->
-  `hnsw_reconnect_nodes` frame.
-
-Both are the same out-of-bounds read; the ASAN build catches it before it
-degrades into either frame.
+The crash is `signal: 11` (SIGSEGV) in the `VREM -> hnsw_reconnect_nodes`
+delete-repair path. The innermost frame may be `select_neighbors` (as in
+production) or one frame up in `hnsw_reconnect_nodes`, depending on what the
+out-of-bounds bytes happen to be -- both are the same out-of-bounds read.
 
 ## Files
 
 - `repro.py`  -- the workload (small sets, drained oldest-first)
-- `run.sh`    -- one-command runner (`./run.sh`, or `./run.sh asan`)
-- `Dockerfile.asan` -- ASAN build of Redis 8.4.0 from `./src`
-- `crash-report-stock-8.4.0.txt` -- crash on the official redis:8.4.0 image
-- `asan-report-8.4.0.txt`         -- ASAN out-of-bounds read on 8.4.0
-- `asan-report-unstable.txt`      -- same, on latest `unstable` (aa5409f1c)
+- `run.sh`    -- one-command runner
+- `crash-report-stock-8.4.0.txt` -- a captured crash on the official image
 
 ## Suggested fix
 

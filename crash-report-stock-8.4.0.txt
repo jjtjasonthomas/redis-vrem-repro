@@ -1,0 +1,629 @@
+Starting Redis Server
+1:C 06 Jul 2026 10:39:15.729 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:C 06 Jul 2026 10:39:15.731 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 06 Jul 2026 10:39:15.731 * Redis version=8.4.0, bits=64, commit=00000000, modified=1, pid=1, just started
+1:C 06 Jul 2026 10:39:15.731 * Configuration loaded
+1:M 06 Jul 2026 10:39:15.732 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1:M 06 Jul 2026 10:39:15.732 * monotonic clock: POSIX clock_gettime
+1:M 06 Jul 2026 10:39:15.733 * Running mode=standalone, port=6379.
+1:M 06 Jul 2026 10:39:15.736 * <bf> RedisBloom version 8.4.0 (Git=unknown)
+1:M 06 Jul 2026 10:39:15.736 * <bf> Registering configuration options: [
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ bf-error-rate       :      0.01 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ bf-initial-size     :       100 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ bf-expansion-factor :         2 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ cf-bucket-size      :         2 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ cf-initial-size     :      1024 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ cf-max-iterations   :        20 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ cf-expansion-factor :         1 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> 	{ cf-max-expansions   :        32 }
+1:M 06 Jul 2026 10:39:15.736 * <bf> ]
+1:M 06 Jul 2026 10:39:15.736 * Module 'bf' loaded from /usr/local/lib/redis/modules//redisbloom.so
+1:M 06 Jul 2026 10:39:15.757 * <search> Redis version found by RedisSearch : 8.4.0 - oss
+1:M 06 Jul 2026 10:39:15.757 * <search> RediSearch version 8.4.2 (Git=9e2b676)
+1:M 06 Jul 2026 10:39:15.757 * <search> Low level api version 1 initialized successfully
+1:M 06 Jul 2026 10:39:15.758 * <search> gc: ON, prefix min length: 2, min word length to stem: 4, prefix max expansions: 200, query timeout (ms): 500, timeout policy: return, oom policy: return, cursor read size: 1000, cursor max idle (ms): 300000, max doctable size: 1000000, max number of search results:  1000000, default scorer: BM25STD, 
+1:M 06 Jul 2026 10:39:15.758 * <search> Initialized thread pools!
+1:M 06 Jul 2026 10:39:15.758 * <search> Disabled workers threadpool of size 0
+1:M 06 Jul 2026 10:39:15.758 * <search> Subscribe to config changes
+1:M 06 Jul 2026 10:39:15.759 * <search> Subscribe to cluster slot migration events
+1:M 06 Jul 2026 10:39:15.759 * <search> Enabled role change notification
+1:M 06 Jul 2026 10:39:15.759 * <search> Cluster configuration: AUTO partitions, type: 0, coordinator timeout: 0ms
+1:M 06 Jul 2026 10:39:15.760 * <search> Register write commands
+1:M 06 Jul 2026 10:39:15.760 * Module 'search' loaded from /usr/local/lib/redis/modules//redisearch.so
+1:M 06 Jul 2026 10:39:15.761 * <timeseries> RedisTimeSeries version 80400, git_sha=3520a1568ad69076d60885c70711fbdc9b448749
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> Redis version found by RedisTimeSeries : 8.4.0 - oss
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> Registering configuration options: [
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-compaction-policy   :              }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-num-threads         :            3 }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-retention-policy    :            0 }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-duplicate-policy    :        block }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-chunk-size-bytes    :         4096 }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-encoding            :   compressed }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-ignore-max-time-diff:            0 }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> 	{ ts-ignore-max-val-diff :     0.000000 }
+1:M 06 Jul 2026 10:39:15.762 * <timeseries> ]
+1:M 06 Jul 2026 10:39:15.763 * <timeseries> Detected redis oss
+1:M 06 Jul 2026 10:39:15.764 * <timeseries> Subscribe to ASM events
+1:M 06 Jul 2026 10:39:15.764 * <timeseries> Enabled diskless replication
+1:M 06 Jul 2026 10:39:15.764 * Module 'timeseries' loaded from /usr/local/lib/redis/modules//redistimeseries.so
+1:M 06 Jul 2026 10:39:15.771 * <ReJSON> Created new data type 'ReJSON-RL'
+1:M 06 Jul 2026 10:39:15.771 * <ReJSON> version: 80400 git sha: unknown branch: unknown
+1:M 06 Jul 2026 10:39:15.771 * <ReJSON> Exported RedisJSON_V1 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Exported RedisJSON_V2 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Exported RedisJSON_V3 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Exported RedisJSON_V4 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Exported RedisJSON_V5 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Exported RedisJSON_V6 API
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Enabled diskless replication
+1:M 06 Jul 2026 10:39:15.772 * <ReJSON> Initialized shared string cache, thread safe: true.
+1:M 06 Jul 2026 10:39:15.772 * Module 'ReJSON' loaded from /usr/local/lib/redis/modules//rejson.so
+1:M 06 Jul 2026 10:39:15.772 * <search> Acquired RedisJSON_V6 API
+1:M 06 Jul 2026 10:39:15.773 * Server initialized
+1:M 06 Jul 2026 10:39:15.775 * Ready to accept connections tcp
+
+
+=== REDIS BUG REPORT START: Cut & paste starting from here ===
+1:M 06 Jul 2026 10:51:06.654 # Redis 8.4.0 crashed by signal: 11, si_code: 1
+1:M 06 Jul 2026 10:51:06.655 # Accessing address: 0x100000021
+1:M 06 Jul 2026 10:51:06.655 # Crashed running the instruction at: 0xca5b78dbba9c
+
+------ STACK TRACE ------
+EIP:
+redis-server *:6379(+0x22ba9c)[0xca5b78dbba9c]
+
+28 bio_aof
+/lib/aarch64-linux-gnu/libc.so.6(+0x7e838)[0xecf1f8c7e838]
+/lib/aarch64-linux-gnu/libc.so.6(pthread_cond_wait+0x208)[0xecf1f8c81388]
+redis-server *:6379(bioProcessBackgroundJobs+0x19c)[0xca5b78d173ac]
+/lib/aarch64-linux-gnu/libc.so.6(+0x82030)[0xecf1f8c82030]
+/lib/aarch64-linux-gnu/libc.so.6(+0xebf1c)[0xecf1f8cebf1c]
+
+29 bio_lazy_free
+/lib/aarch64-linux-gnu/libc.so.6(+0x7e838)[0xecf1f8c7e838]
+/lib/aarch64-linux-gnu/libc.so.6(pthread_cond_wait+0x208)[0xecf1f8c81388]
+redis-server *:6379(bioProcessBackgroundJobs+0x19c)[0xca5b78d173ac]
+/lib/aarch64-linux-gnu/libc.so.6(+0x82030)[0xecf1f8c82030]
+/lib/aarch64-linux-gnu/libc.so.6(+0xebf1c)[0xecf1f8cebf1c]
+
+27 bio_close_file
+/lib/aarch64-linux-gnu/libc.so.6(+0x7e838)[0xecf1f8c7e838]
+/lib/aarch64-linux-gnu/libc.so.6(pthread_cond_wait+0x208)[0xecf1f8c81388]
+redis-server *:6379(bioProcessBackgroundJobs+0x19c)[0xca5b78d173ac]
+/lib/aarch64-linux-gnu/libc.so.6(+0x82030)[0xecf1f8c82030]
+/lib/aarch64-linux-gnu/libc.so.6(+0xebf1c)[0xecf1f8cebf1c]
+
+1 redis-server *
+linux-vdso.so.1(__kernel_rt_sigreturn+0x0)[0xecf1f95db8f8]
+redis-server *:6379(+0x22ba9c)[0xca5b78dbba9c]
+redis-server *:6379(hnsw_reconnect_nodes+0x660)[0xca5b78dad6e0]
+redis-server *:6379(VREM_RedisCommand+0x204)[0xca5b78dadb34]
+redis-server *:6379(RedisModuleCommandDispatcher+0xa4)[0xca5b78d41328]
+redis-server *:6379(call+0x154)[0xca5b78c46dc4]
+redis-server *:6379(processCommand+0xac4)[0xca5b78c52184]
+redis-server *:6379(processInputBuffer+0x670)[0xca5b78c74400]
+redis-server *:6379(readQueryFromClient+0x260)[0xca5b78c74d80]
+redis-server *:6379(+0x204a6c)[0xca5b78d94a6c]
+redis-server *:6379(aeMain+0x10c)[0xca5b78c2b610]
+redis-server *:6379(main+0x530)[0xca5b78c26b70]
+/lib/aarch64-linux-gnu/libc.so.6(+0x27744)[0xecf1f8c27744]
+/lib/aarch64-linux-gnu/libc.so.6(__libc_start_main+0x98)[0xecf1f8c27818]
+redis-server *:6379(_start+0x30)[0xca5b78c27230]
+
+4/4 expected stacktraces.
+
+------ STACK TRACE DONE ------
+
+------ REGISTERS ------
+1:M 06 Jul 2026 10:51:06.662 # 
+X18:00000000ffffffbf X19:0000000100000001
+X20:0000ecf1f8371f90 X21:0000ecf1f8681000
+X22:0000ecf1f8371f00 X23:00000000000000fa
+X24:0000ecf1f85d6300 X25:0000ecf1f86e2a28
+X26:00000000000000c8 X27:0000ecf1f86e2a20
+X28:0000ecf1f8524000 X29:0000fffffbb52990
+X30:0000ca5b78dbb9b4
+pc:0000ca5b78dbba9c sp:0000fffffbb52990
+pstate:0000000020001000 fault_address:0000000100000021
+
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299f) -> 0000000000000001
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299e) -> 0000000000000000
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299d) -> 0000000000000000
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299c) -> 0000000000000000
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299b) -> 0000ecf1f8742f20
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb5299a) -> 0000ecf1f86e2a00
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52999) -> 0000ecf1f8742f38
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52998) -> 0000000000000000
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52997) -> 0000000000000001
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52996) -> 0000ecf1f8742f60
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52995) -> 0000000000000000
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52994) -> 0000000000000030
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52993) -> 0000000000000001
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52992) -> 0000ecf1f8742f58
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52991) -> 0000ca5b78dad6e0
+1:M 06 Jul 2026 10:51:06.662 # (0000fffffbb52990) -> 0000fffffbb52a20
+
+------ INFO OUTPUT ------
+# Server
+redis_version:8.4.0
+redis_git_sha1:00000000
+redis_git_dirty:1
+redis_build_id:18e45058d3b5f994
+redis_mode:standalone
+os:Linux 6.8.0-100-generic aarch64
+arch_bits:64
+monotonic_clock:POSIX clock_gettime
+multiplexing_api:epoll
+atomicvar_api:c11-builtin
+gcc_version:12.2.0
+process_id:1
+process_supervised:no
+run_id:c50768bc5c7108283745e86a855cf39a12190d37
+tcp_port:6379
+server_time_usec:1783335066654449
+uptime_in_seconds:711
+uptime_in_days:0
+hz:10
+configured_hz:10
+lru_clock:4950170
+executable:/data/redis-server
+config_file:
+io_threads_active:0
+listener0:name=tcp,bind=*,bind=-::*,port=6379
+
+# Clients
+connected_clients:1
+cluster_connections:0
+maxclients:10000
+client_recent_max_input_buffer:0
+client_recent_max_output_buffer:0
+blocked_clients:0
+tracking_clients:0
+pubsub_clients:0
+watching_clients:0
+clients_in_timeout_table:0
+total_watched_keys:0
+total_blocking_keys:0
+total_blocking_keys_on_nokey:0
+
+# Memory
+used_memory:1278432
+used_memory_human:1.22M
+used_memory_rss:20578304
+used_memory_rss_human:19.62M
+used_memory_peak:1315760
+used_memory_peak_human:1.25M
+used_memory_peak_time:1783334358
+used_memory_peak_perc:97.16%
+used_memory_overhead:1178168
+used_memory_startup:1105376
+used_memory_dataset:100264
+used_memory_dataset_perc:57.94%
+allocator_allocated:3504896
+allocator_active:14614528
+allocator_resident:15990784
+allocator_muzzy:0
+total_system_memory:2055876608
+total_system_memory_human:1.91G
+used_memory_lua:32768
+used_memory_vm_eval:32768
+used_memory_lua_human:32.00K
+used_memory_scripts_eval:0
+number_of_cached_scripts:0
+number_of_functions:0
+number_of_libraries:0
+used_memory_vm_functions:34816
+used_memory_vm_total:67584
+used_memory_vm_total_human:66.00K
+used_memory_functions:192
+used_memory_scripts:192
+used_memory_scripts_human:192B
+maxmemory:0
+maxmemory_human:0B
+maxmemory_policy:noeviction
+allocator_frag_ratio:6.44
+allocator_frag_bytes:7861760
+allocator_rss_ratio:1.09
+allocator_rss_bytes:1376256
+rss_overhead_ratio:1.29
+rss_overhead_bytes:4587520
+mem_fragmentation_ratio:15.95
+mem_fragmentation_bytes:19287992
+mem_not_counted_for_evict:0
+mem_replication_backlog:0
+mem_total_replication_buffers:0
+mem_replica_full_sync_buffer:0
+mem_clients_slaves:0
+mem_clients_normal:2048
+mem_cluster_slot_migration_output_buffer:0
+mem_cluster_slot_migration_input_buffer:0
+mem_cluster_slot_migration_input_buffer_peak:0
+mem_cluster_links:0
+mem_aof_buffer:0
+mem_allocator:jemalloc-5.3.0
+mem_overhead_db_hashtable_rehashing:0
+active_defrag_running:0
+lazyfree_pending_objects:0
+lazyfreed_objects:0
+
+# Persistence
+loading:0
+async_loading:0
+current_cow_peak:0
+current_cow_size:0
+current_cow_size_age:0
+current_fork_perc:0.00
+current_save_keys_processed:0
+current_save_keys_total:0
+rdb_changes_since_last_save:1710539
+rdb_bgsave_in_progress:0
+rdb_last_save_time:1783334355
+rdb_last_bgsave_status:ok
+rdb_last_bgsave_time_sec:-1
+rdb_current_bgsave_time_sec:-1
+rdb_saves:0
+rdb_saves_consecutive_failures:0
+rdb_last_cow_size:0
+rdb_last_load_keys_expired:0
+rdb_last_load_keys_loaded:0
+aof_enabled:0
+aof_rewrite_in_progress:0
+aof_rewrite_scheduled:0
+aof_last_rewrite_time_sec:-1
+aof_current_rewrite_time_sec:-1
+aof_last_bgrewrite_status:ok
+aof_rewrites:0
+aof_rewrites_consecutive_failures:0
+aof_last_write_status:ok
+aof_last_cow_size:0
+module_fork_in_progress:0
+module_fork_last_cow_size:0
+
+# Threads
+io_thread_0:clients=1,reads=1710546,writes=1710545
+
+# Stats
+total_connections_received:1
+total_commands_processed:1710553
+instantaneous_ops_per_sec:2351
+total_net_input_bytes:186167736
+total_net_output_bytes:6843558
+total_net_repl_input_bytes:0
+total_net_repl_output_bytes:0
+instantaneous_input_kbps:255.02
+instantaneous_output_kbps:9.19
+instantaneous_input_repl_kbps:0.00
+instantaneous_output_repl_kbps:0.00
+rejected_connections:0
+sync_full:0
+sync_partial_ok:0
+sync_partial_err:0
+expired_subkeys:0
+expired_keys:0
+expired_stale_perc:0.00
+expired_time_cap_reached_count:0
+expire_cycle_cpu_milliseconds:7
+evicted_keys:0
+evicted_clients:0
+evicted_scripts:0
+total_eviction_exceeded_time:0
+current_eviction_exceeded_time:0
+keyspace_hits:0
+keyspace_misses:0
+pubsub_channels:0
+pubsub_patterns:0
+pubsubshard_channels:0
+latest_fork_usec:0
+total_forks:0
+migrate_cached_sockets:0
+slave_expires_tracked_keys:0
+active_defrag_hits:0
+active_defrag_misses:0
+active_defrag_key_hits:0
+active_defrag_key_misses:0
+total_active_defrag_time:0
+current_active_defrag_time:0
+tracking_total_keys:0
+tracking_total_items:0
+tracking_total_prefixes:0
+unexpected_error_replies:0
+total_error_replies:1
+dump_payload_sanitizations:0
+total_reads_processed:1710546
+total_writes_processed:1710545
+io_threaded_reads_processed:0
+io_threaded_writes_processed:0
+io_threaded_total_prefetch_batches:0
+io_threaded_total_prefetch_entries:0
+client_query_buffer_limit_disconnections:0
+client_output_buffer_limit_disconnections:0
+reply_buffer_shrinks:1
+reply_buffer_expands:0
+eventloop_cycles:1710969
+eventloop_duration_sum:45342822
+eventloop_duration_cmd_sum:13304067
+instantaneous_eventloop_cycles_per_sec:2352
+instantaneous_eventloop_duration_usec:26
+acl_access_denied_auth:0
+acl_access_denied_cmd:0
+acl_access_denied_key:0
+acl_access_denied_channel:0
+
+# Replication
+role:master
+connected_slaves:0
+master_failover_state:no-failover
+master_replid:b81b46d5db091ce5dbee6ea0c83c16b0a505e25c
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:0
+second_repl_offset:-1
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+
+# CPU
+used_cpu_sys:26.058461
+used_cpu_user:22.980698
+used_cpu_sys_children:0.013660
+used_cpu_user_children:0.013146
+used_cpu_sys_main_thread:26.046895
+used_cpu_user_main_thread:22.970183
+
+# Modules
+module:name=vectorset,ver=1,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors|handle-repl-async-load]
+module:name=search,ver=80402,api=1,filters=0,usedby=[],using=[ReJSON],options=[handle-io-errors]
+module:name=timeseries,ver=80400,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
+module:name=bf,ver=80400,api=1,filters=0,usedby=[],using=[],options=[handle-io-errors]
+module:name=ReJSON,ver=80400,api=1,filters=0,usedby=[search],using=[],options=[handle-io-errors]
+
+# Commandstats
+cmdstat_VREM:calls=855259,usec=4939372,usec_per_call=5.78,rejected_calls=0,failed_calls=0
+cmdstat_hello:calls=1,usec=114,usec_per_call=114.00,rejected_calls=0,failed_calls=0
+cmdstat_ping:calls=1,usec=7,usec_per_call=7.00,rejected_calls=0,failed_calls=0
+cmdstat_VADD:calls=855280,usec=8364451,usec_per_call=9.78,rejected_calls=0,failed_calls=0
+cmdstat_config|get:calls=3,usec=15,usec_per_call=5.00,rejected_calls=0,failed_calls=0
+cmdstat_client|setinfo:calls=2,usec=2,usec_per_call=1.00,rejected_calls=0,failed_calls=0
+cmdstat_info:calls=7,usec=376,usec_per_call=53.71,rejected_calls=0,failed_calls=0
+
+# Errorstats
+errorstat_ERR:count=1
+
+# Latencystats
+latency_percentiles_usec_VREM:p50=5.023,p99=23.039,p99.9=48.127
+latency_percentiles_usec_hello:p50=114.175,p99=114.175,p99.9=114.175
+latency_percentiles_usec_ping:p50=7.007,p99=7.007,p99.9=7.007
+latency_percentiles_usec_VADD:p50=9.023,p99=33.023,p99.9=69.119
+latency_percentiles_usec_config|get:p50=2.007,p99=12.031,p99.9=12.031
+latency_percentiles_usec_client|setinfo:p50=1.003,p99=1.003,p99.9=1.003
+latency_percentiles_usec_info:p50=9.023,p99=215.039,p99.9=215.039
+
+# Cluster
+cluster_enabled:0
+
+# Keyspace
+db0:keys=1,expires=0,avg_ttl=0,subexpiry=0
+
+# Keysizes
+
+------ CLIENT LIST OUTPUT ------
+id=10 addr=172.17.0.1:48810 laddr=172.17.0.3:6379 fd=22 name= age=709 idle=0 flags=N db=0 sub=0 psub=0 ssub=0 multi=-1 watch=0 qbuf=35 qbuf-free=20439 argv-mem=13 multi-mem=0 rbs=1024 rbp=4 obl=0 oll=0 omem=0 tot-mem=22565 events=r cmd=VREM user=default redir=-1 resp=3 lib-name=redis-py lib-ver=8.0.1 io-thread=0 tot-net-in=186167736 tot-net-out=6843558 tot-cmds=1710544
+
+------ CURRENT CLIENT INFO ------
+id=10 addr=172.17.0.1:48810 laddr=172.17.0.3:6379 fd=22 name= age=709 idle=0 flags=N db=0 sub=0 psub=0 ssub=0 multi=-1 watch=0 qbuf=35 qbuf-free=20439 argv-mem=13 multi-mem=0 rbs=1024 rbp=4 obl=0 oll=0 omem=0 tot-mem=22565 events=r cmd=VREM user=default redir=-1 resp=3 lib-name=redis-py lib-ver=8.0.1 io-thread=0 tot-net-in=186167736 tot-net-out=6843558 tot-cmds=1710544
+argc: '3'
+argv[0]: '"VREM"'
+argv[1]: '"s10690"'
+argv[2]: '"e59"'
+1:M 06 Jul 2026 10:51:06.663 # key 's10690' found in DB containing the following object:
+1:M 06 Jul 2026 10:51:06.663 # Object type: 5
+1:M 06 Jul 2026 10:51:06.663 # Object encoding: 0
+1:M 06 Jul 2026 10:51:06.663 # Object refcount: 1
+
+------ EXECUTING CLIENT INFO ------
+id=10 addr=172.17.0.1:48810 laddr=172.17.0.3:6379 fd=22 name= age=709 idle=0 flags=N db=0 sub=0 psub=0 ssub=0 multi=-1 watch=0 qbuf=35 qbuf-free=20439 argv-mem=13 multi-mem=0 rbs=1024 rbp=4 obl=0 oll=0 omem=0 tot-mem=22565 events=r cmd=VREM user=default redir=-1 resp=3 lib-name=redis-py lib-ver=8.0.1 io-thread=0 tot-net-in=186167736 tot-net-out=6843558 tot-cmds=1710544
+argc: '3'
+argv[0]: '"VREM"'
+argv[1]: '"s10690"'
+argv[2]: '"e59"'
+1:M 06 Jul 2026 10:51:06.663 # key 's10690' found in DB containing the following object:
+1:M 06 Jul 2026 10:51:06.663 # Object type: 5
+1:M 06 Jul 2026 10:51:06.663 # Object encoding: 0
+1:M 06 Jul 2026 10:51:06.663 # Object refcount: 1
+
+------ MODULES INFO OUTPUT ------
+# search_version
+search_version:8.4.2
+search_redis_version:8.4.0 - oss
+
+# search_indexes
+search_number_of_indexes:0
+search_number_of_active_indexes:0
+search_number_of_active_indexes_running_queries:0
+search_number_of_active_indexes_indexing:0
+search_total_active_write_threads:0
+search_total_indexing_time:0
+
+# search_fields_statistics
+
+# search_memory
+search_used_memory_indexes:0
+search_used_memory_indexes_human:0
+search_smallest_memory_index:0
+search_smallest_memory_index_human:0
+search_largest_memory_index:0
+search_largest_memory_index_human:0
+search_used_memory_vector_index:0
+
+# search_cursors
+search_global_idle_user:0
+search_global_idle_internal:0
+search_global_total_user:0
+search_global_total_internal:0
+
+# search_garbage_collector
+search_gc_bytes_collected:0
+search_gc_total_cycles:0
+search_gc_total_ms_run:0
+search_gc_total_docs_not_collected:0
+search_gc_marked_deleted_vectors:0
+
+# search_queries
+search_total_queries_processed:0
+search_total_query_commands:0
+search_total_query_execution_time_ms:0
+search_total_active_queries:0
+
+# search_warnings_and_errors
+search_errors_indexing_failures:0
+search_errors_for_index_with_max_failures:0
+search_OOM_indexing_failures_indexes_count:0
+
+# search_dialect_statistics
+search_dialect_1:0
+search_dialect_2:0
+search_dialect_3:0
+search_dialect_4:0
+
+# search_runtime_configurations
+search_extension_load:
+search_friso_ini:
+search_default_scorer:BM25STD
+search_enableGC:ON
+search_minimal_term_prefix:2
+search_minimal_stem_length:4
+search_maximal_prefix_expansions:200
+search_query_timeout_ms:500
+search_timeout_policy:return
+search_oom_policy:return
+search_cursor_read_size:1000
+search_cursor_max_idle_time:300000
+search_max_doc_table_size:1000000
+search_max_search_results:1000000
+search_max_aggregate_results:2147483648
+search_gc_scan_size:100
+search_min_phonetic_term_length:3
+search_bm25std_tanh_factor:4
+
+# search_current_thread
+
+# search_blocked_queries
+
+# search_blocked_cursors
+
+# ReJSON_trace
+ReJSON_backtrace:   0: redis_module::basic_info_command_handler
+   1: rejson::__info_func
+   2: modulesCollectInfo
+             at /usr/src/redis/src/module.c:10847:9
+   3: logModulesInfo
+             at /usr/src/redis/src/debug.c:2191:22
+      printCrashReport
+             at /usr/src/redis/src/debug.c:2559:5
+   4: sigsegvHandler
+             at /usr/src/redis/src/debug.c:2478:32
+   5: <unknown>
+   6: search_layer_with_filter.constprop.1
+             at /usr/src/redis/src/../modules/vector-sets/hnsw.c:790:23
+   7: search_layer
+             at /usr/src/redis/src/../modules/vector-sets/hnsw.c:832:12
+      hnsw_reconnect_nodes
+             at /usr/src/redis/src/../modules/vector-sets/hnsw.c:1535:30
+   8: hnsw_delete_node
+             at /usr/src/redis/src/../modules/vector-sets/hnsw.c:1685:9
+      VREM_RedisCommand
+             at /usr/src/redis/src/../modules/vector-sets/vset.c:1245:5
+      VREM_RedisCommand
+             at /usr/src/redis/src/../modules/vector-sets/vset.c:1206:5
+   9: RedisModuleCommandDispatcher
+             at /usr/src/redis/src/module.c:940:5
+  10: call
+             at /usr/src/redis/src/server.c:3798:5
+  11: processCommand
+             at /usr/src/redis/src/server.c:4534:9
+  12: processCommandAndResetClient
+             at /usr/src/redis/src/networking.c:2864:9
+      processInputBuffer
+             at /usr/src/redis/src/networking.c:3134:17
+  13: readQueryFromClient
+             at /usr/src/redis/src/networking.c:3297:9
+  14: callHandler
+             at /usr/src/redis/src/connhelpers.h:59:18
+      connSocketEventHandler
+             at /usr/src/redis/src/socket.c:288:14
+  15: aeProcessEvents
+             at /usr/src/redis/src/ae.c:435:17
+      aeProcessEvents
+             at /usr/src/redis/src/ae.c:360:5
+      aeMain
+             at /usr/src/redis/src/ae.c:495:9
+  16: main
+             at /usr/src/redis/src/server.c:7796:5
+  17: <unknown>
+  18: __libc_start_main
+  19: _start
+
+
+------ CONFIG DEBUG OUTPUT ------
+lazyfree-lazy-server-del no
+replica-read-only yes
+repl-diskless-load disabled
+repl-diskless-sync yes
+lazyfree-lazy-eviction no
+lazyfree-lazy-user-flush no
+lazyfree-lazy-user-del no
+proto-max-bulk-len 512mb
+client-query-buffer-limit 1gb
+lazyfree-lazy-expire no
+activedefrag no
+slave-read-only yes
+list-compress-depth 0
+sanitize-dump-payload no
+io-threads 1
+
+------ FAST MEMORY TEST ------
+1:M 06 Jul 2026 10:51:06.751 # Bio worker thread #0 terminated
+1:M 06 Jul 2026 10:51:06.751 # Bio worker thread #1 terminated
+1:M 06 Jul 2026 10:51:06.751 # Bio worker thread #2 terminated
+*** Preparing to test memory region ca5b78f89000 (753664 bytes)
+*** Preparing to test memory region ca5b987c8000 (401408 bytes)
+*** Preparing to test memory region ecf1ec000000 (135168 bytes)
+*** Preparing to test memory region ecf1f1200000 (6291456 bytes)
+*** Preparing to test memory region ecf1f1900000 (9437184 bytes)
+*** Preparing to test memory region ecf1f3ad0000 (8388608 bytes)
+*** Preparing to test memory region ecf1f42e0000 (8388608 bytes)
+*** Preparing to test memory region ecf1f4af0000 (8388608 bytes)
+*** Preparing to test memory region ecf1f5300000 (8388608 bytes)
+*** Preparing to test memory region ecf1f5b10000 (8388608 bytes)
+*** Preparing to test memory region ecf1f66b2000 (4096 bytes)
+*** Preparing to test memory region ecf1f66c0000 (3670016 bytes)
+*** Preparing to test memory region ecf1f7679000 (12288 bytes)
+*** Preparing to test memory region ecf1f7680000 (9961472 bytes)
+*** Preparing to test memory region ecf1f8080000 (9961472 bytes)
+*** Preparing to test memory region ecf1f8b66000 (8192 bytes)
+*** Preparing to test memory region ecf1f8bb1000 (4096 bytes)
+*** Preparing to test memory region ecf1f8da2000 (53248 bytes)
+*** Preparing to test memory region ecf1f9203000 (12288 bytes)
+*** Preparing to test memory region ecf1f94e3000 (12288 bytes)
+*** Preparing to test memory region ecf1f95ce000 (28672 bytes)
+*** Preparing to test memory region ecf1f95d7000 (8192 bytes)
+.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O
+Fast memory test PASSED, however your memory can still be broken. Please run a memory test for several hours if possible.
+
+------ DUMPING CODE AROUND EIP ------
+Symbol: (null) (base: (nil))
+Module: redis-server *:6379 (base 0xca5b78b90000)
+$ xxd -r -p /tmp/dump.hex /tmp/dump.bin
+$ objdump --adjust-vma=(nil) -D -b binary -m i386:x86-64 /tmp/dump.bin
+------
+
+=== REDIS BUG REPORT END. Make sure to include from START to END. ===
+
+       Please report the crash by opening an issue on github:
+
+           http://github.com/redis/redis/issues
+
+  If a Redis module was involved, please open in the module's repo instead.
+
+  Suspect RAM error? Use redis-server --test-memory to verify it.
+
+  Some other issues could be detected by redis-server --check-system

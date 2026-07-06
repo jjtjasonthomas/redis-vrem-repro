@@ -1,0 +1,19 @@
+FROM debian:bookworm-slim AS build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libssl-dev pkg-config python3 && \
+    rm -rf /var/lib/apt/lists/*
+COPY src /redis-src
+WORKDIR /redis-src
+# SANITIZER=address is supported by the Redis build system.
+# Keep malloc=libc so ASAN interposes the allocator (jemalloc would hide
+# the out-of-bounds read this reproducer exists to catch).
+RUN make -j"$(nproc)" SANITIZER=address MALLOC=libc redis-server && \
+    cp src/redis-server /redis-server-asan
+
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libasan8 libssl3 && rm -rf /var/lib/apt/lists/*
+COPY --from=build /redis-server-asan /usr/local/bin/redis-server
+ENV ASAN_OPTIONS=abort_on_error=0:halt_on_error=1:print_stats=0
+EXPOSE 6379
+CMD ["redis-server", "--appendonly", "no", "--save", ""]

@@ -1,0 +1,95 @@
+1:C 05 Jul 2026 14:03:30.564 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:C 05 Jul 2026 14:03:31.707 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 05 Jul 2026 14:03:31.708 * Redis version=255.255.255, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 05 Jul 2026 14:03:31.708 * Configuration loaded
+1:M 05 Jul 2026 14:03:31.712 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+1:M 05 Jul 2026 14:03:31.713 * monotonic clock: ARM CNTVCT @ 24 ticks/us
+1:M 05 Jul 2026 14:03:31.736 * Running mode=standalone, port=6379.
+1:M 05 Jul 2026 14:03:31.742 * Server initialized
+1:M 05 Jul 2026 14:03:31.743 * Ready to accept connections tcp
+1:M 05 Jul 2026 14:03:31.743 # WARNING: Redis does not require authentication and is not protected by network restrictions. Redis will accept connections from any IP address on any network interface.
+=================================================================
+==1==ERROR: AddressSanitizer: heap-buffer-overflow on address 0xed0068278a48 at pc 0xb5aad0cce428 bp 0xfffff48da3e0 sp 0xfffff48da3f8
+READ of size 4 at 0xed0068278a48 thread T0
+    #0 0xb5aad0cce424 in search_layer_with_filter.constprop.1 ../modules/vector-sets/hnsw.c:1089
+    #1 0xb5aad0ca6360 in search_layer ../modules/vector-sets/hnsw.c:1132
+    #2 0xb5aad0ca6360 in hnsw_reconnect_nodes ../modules/vector-sets/hnsw.c:1835
+    #3 0xb5aad0cc5844 in hnsw_delete_node ../modules/vector-sets/hnsw.c:1985
+    #4 0xb5aad0cc5844 in VREM_RedisCommand ../modules/vector-sets/vset.c:1262
+    #5 0xb5aad0cc5844 in VREM_RedisCommand ../modules/vector-sets/vset.c:1223
+    #6 0xb5aad0b6c918 in RedisModuleCommandDispatcher /redis-src/src/module.c:985
+    #7 0xb5aad08a7abc in call /redis-src/src/server.c:4017
+    #8 0xb5aad08afc10 in processCommand /redis-src/src/server.c:4790
+    #9 0xb5aad090c348 in processCommandAndResetClient /redis-src/src/networking.c:3495
+    #10 0xb5aad090c348 in processInputBuffer /redis-src/src/networking.c:3787
+    #11 0xb5aad0910b5c in readQueryFromClient /redis-src/src/networking.c:3971
+    #12 0xb5aad0c685b0 in callHandler /redis-src/src/connhelpers.h:59
+    #13 0xb5aad0c685b0 in connSocketEventHandler /redis-src/src/socket.c:288
+    #14 0xb5aad0855734 in aeProcessEvents /redis-src/src/ae.c:440
+    #15 0xb5aad0855734 in aeProcessEvents /redis-src/src/ae.c:365
+    #16 0xb5aad0855734 in aeMain /redis-src/src/ae.c:500
+    #17 0xb5aad084aa74 in main /redis-src/src/server.c:8306
+    #18 0xed0082987740  (/lib/aarch64-linux-gnu/libc.so.6+0x27740)
+    #19 0xed0082987814 in __libc_start_main (/lib/aarch64-linux-gnu/libc.so.6+0x27814)
+    #20 0xb5aad084c0ec in _start (/usr/local/bin/redis-server+0x17c0ec)
+
+0xed0068278a48 is located 8 bytes to the right of 384-byte region [0xed00682788c0,0xed0068278a40)
+allocated by thread T0 here:
+    #0 0xed0082c6b734 in __interceptor_malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0xb5aad0b69f34 in ztrymalloc_usable_internal /redis-src/src/zmalloc.c:252
+    #2 0xb5aad0b69f34 in zmalloc_usable /redis-src/src/zmalloc.c:300
+    #3 0xb5aad0b69f34 in RM_Alloc /redis-src/src/module.c:563
+    #4 0xb5aad0ca9b8c in hnsw_node_new ../modules/vector-sets/hnsw.c:906
+    #5 0xb5aad0caa324 in hnsw_prepare_insert_nolock ../modules/vector-sets/hnsw.c:2086
+    #6 0xb5aad0cc33b0 in hnsw_insert ../modules/vector-sets/hnsw.c:2265
+    #7 0xb5aad0cc33b0 in vectorSetInsert ../modules/vector-sets/vset.c:356
+    #8 0xb5aad0cc434c in VADD_RedisCommand ../modules/vector-sets/vset.c:794
+    #9 0xb5aad0b6c918 in RedisModuleCommandDispatcher /redis-src/src/module.c:985
+    #10 0xb5aad08a7abc in call /redis-src/src/server.c:4017
+    #11 0xb5aad08afc10 in processCommand /redis-src/src/server.c:4790
+    #12 0xb5aad090c348 in processCommandAndResetClient /redis-src/src/networking.c:3495
+    #13 0xb5aad090c348 in processInputBuffer /redis-src/src/networking.c:3787
+    #14 0xb5aad0910b5c in readQueryFromClient /redis-src/src/networking.c:3971
+    #15 0xb5aad0c685b0 in callHandler /redis-src/src/connhelpers.h:59
+    #16 0xb5aad0c685b0 in connSocketEventHandler /redis-src/src/socket.c:288
+    #17 0xb5aad0855734 in aeProcessEvents /redis-src/src/ae.c:440
+    #18 0xb5aad0855734 in aeProcessEvents /redis-src/src/ae.c:365
+    #19 0xb5aad0855734 in aeMain /redis-src/src/ae.c:500
+    #20 0xb5aad084aa74 in main /redis-src/src/server.c:8306
+    #21 0xed0082987740  (/lib/aarch64-linux-gnu/libc.so.6+0x27740)
+    #22 0xed0082987814 in __libc_start_main (/lib/aarch64-linux-gnu/libc.so.6+0x27814)
+    #23 0xb5aad084c0ec in _start (/usr/local/bin/redis-server+0x17c0ec)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow ../modules/vector-sets/hnsw.c:1089 in search_layer_with_filter.constprop.1
+Shadow bytes around the buggy address:
+  0x1db00d04f0f0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x1db00d04f100: fd fd fd fd fd fd fd fd fd fd fa fa fa fa fa fa
+  0x1db00d04f110: fa fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
+  0x1db00d04f120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1db00d04f130: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x1db00d04f140: 00 00 00 00 00 00 00 00 fa[fa]fa fa fa fa fa fa
+  0x1db00d04f150: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x1db00d04f160: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x1db00d04f170: fd fd fd fd fd fd fd fd fd fd fa fa fa fa fa fa
+  0x1db00d04f180: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
+  0x1db00d04f190: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1==ABORTING
